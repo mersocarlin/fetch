@@ -16,7 +16,10 @@ export interface FetchResponse {
   statusCode: number
 }
 
-const fetch = async (url: string, options?: RequestOptions) => {
+const fetch = async (
+  url: string,
+  options?: RequestOptions
+): Promise<FetchResponse> => {
   try {
     const defaultOptions: RequestOptions = {
       body: undefined,
