@@ -1,4 +1,5 @@
 {
+  "exclude": ["src/fixtures", "src/**/*.spec.ts"],
   "include": ["src", "types"],
   "compilerOptions": {
     "module": "esnext",
