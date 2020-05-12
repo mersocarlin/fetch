@@ -33,9 +33,9 @@ jobs:
           CI: true
 
       - name: Lint
-          run: yarn lint
-          env:
-            CI: true
+        run: yarn lint
+        env:
+          CI: true
 
       - name: Test
         run: yarn test --ci --coverage --maxWorkers=2
