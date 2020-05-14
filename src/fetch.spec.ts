@@ -3,7 +3,7 @@ import {
   InternalServerError,
 } from '@mersocarlin/api-error'
 
-import { startServer } from './fixtures/fakeServer'
+import { startServer } from './fixtures/server'
 import fetch from './fetch'
 
 describe('fetch', () => {
@@ -24,6 +24,18 @@ describe('fetch', () => {
 
     expect(statusCode).toEqual(200)
     expect(Array.isArray(body)).toBeTruthy()
+  })
+
+  it('should handle 204 no content', async () => {
+    const { body, statusCode } = await fetch(
+      'http://localhost:3000/api/users',
+      {
+        method: 'delete',
+      }
+    )
+
+    expect(statusCode).toEqual(204)
+    expect(body).toBeUndefined()
   })
 
   it('should handle text/html content-type', async () => {
