@@ -12,6 +12,9 @@ export const startServer = ({ port = process.env.PORT } = {}) => {
 
   const router = express.Router()
   router.get('/users', (_req: Request, res: Response) => res.send(users))
+  router.delete('/users', (_req: Request, res: Response) =>
+    res.status(204).send()
+  )
   router.get('/users-html', (_req: Request, res: Response) => {
     res.set('Content-Type', 'text/html').send(users)
   })

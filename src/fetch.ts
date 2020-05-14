@@ -46,20 +46,13 @@ const fetch = async (
 
     let jsonResponse
 
-    switch (contentType) {
-      case 'application/json': {
-        jsonResponse = await response.json()
-        break
-      }
-      case 'text/html':
-      case 'text/plain': {
-        jsonResponse = await response.text()
-        break
-      }
-      default: {
-        if (response.status !== 204) {
-          jsonResponse = `Unknown response from Content-Type = ${contentType}`
-        }
+    if (contentType === 'application/json') {
+      jsonResponse = await response.json()
+    } else if (contentType === 'text/html' || contentType === 'text/plain') {
+      jsonResponse = await response.text()
+    } else {
+      if (response.status !== 204) {
+        jsonResponse = `Unknown response from Content-Type = ${contentType}`
       }
     }
 
@@ -72,13 +65,12 @@ const fetch = async (
       throw new InternalServerError(error.message)
     }
 
-    switch (error.code) {
-      default:
-        throw new ApiError(error.message, error.code)
-      case 'ECONNREFUSED':
-        throw new InternalServerError(error.message)
-      case 'ECONNRESET':
-        throw new GatewayTimeoutError(error.message)
+    if (error.code === 'ECONNREFUSED') {
+      throw new InternalServerError(error.message)
+    } else if (error.code === 'ECONNRESET') {
+      throw new GatewayTimeoutError(error.message)
+    } else {
+      throw new ApiError(error.message, error.code)
     }
   }
 }
