@@ -1,6 +1,11 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+    - '!v*'
 
 jobs:
   build:
@@ -33,7 +38,7 @@ jobs:
           CI: true
 
       - name: Lint
-        run: yarn lint
+        run: yarn tslint
         env:
           CI: true
 
