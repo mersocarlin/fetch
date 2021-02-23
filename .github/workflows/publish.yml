@@ -34,7 +34,7 @@ jobs:
           CI: true
 
       - name: Lint
-        run: yarn lint
+        run: yarn tslint
         env:
           CI: true
 
