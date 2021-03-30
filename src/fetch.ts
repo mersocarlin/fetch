@@ -5,21 +5,12 @@ import {
   GatewayTimeoutError,
 } from '@mersocarlin/api-error'
 
-interface RequestOptions {
-  body?: object
-  headers?: Record<string, string>
-  method?: 'delete' | 'get' | 'patch' | 'post' | 'put'
-}
+import { FetchResponse, RequestOptions } from '../types'
 
-export interface FetchResponse {
-  body: any
-  statusCode: number
-}
-
-const fetch = async (
+async function fetch(
   url: string,
   options?: RequestOptions
-): Promise<FetchResponse> => {
+): Promise<FetchResponse> {
   try {
     const defaultOptions: RequestOptions = {
       body: undefined,
