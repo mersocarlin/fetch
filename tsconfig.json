@@ -1,14 +1,15 @@
 {
-  "exclude": ["src/fixtures", "src/**/*.spec.ts"],
-  "include": ["src"],
   "compilerOptions": {
     "module": "ESNext",
     "lib": ["dom", "esnext"],
-    "declaration": true,
-    "sourceMap": true,
     "strict": true,
     "moduleResolution": "Node",
+    "noEmitOnError": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "esModuleInterop": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src/**/*", "types/**/*"],
+  "exclude": ["src/**/*.spec.ts", "src/fixtures", "lib", "node_modules"]
 }
